@@ -32,10 +32,10 @@ var loadTasks = function () {
       done: [],
     };
   }
-
+  //console.log(tasks);
   // loop over object properties
   $.each(tasks, function (list, arr) {
-    //console.log(list, arr);
+    console.log(list, arr);
     // then loop over sub-array
     arr.forEach(function (task) {
       createTask(task.text, task.date, list);
@@ -44,7 +44,7 @@ var loadTasks = function () {
 };
 
 var saveTasks = function () {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("tasks", JSON.stringify("text"));
 };
 
 $(".list-group").on("click", "p", function () {
@@ -180,14 +180,14 @@ var auditTask = function (taskEl) {
 
   // remove any old classes from element
   $(taskEl).removeClass("list-group-item-warning list-group-item-danger");
-
+  console.log(Math.abs(moment().diff(time, "days")) <= 2);
   // apply new class if task is near/over due date
   if (moment().isAfter(time)) {
     $(taskEl).addClass("list-group-item-danger");
   } else if (Math.abs(moment().diff(time, "days")) <= 2) {
     $(taskEl).addClass("list-group-item-warning");
   }
-  console.log(taskEl);
+  //console.log(taskEl);
 };
 
 // modal was triggered
